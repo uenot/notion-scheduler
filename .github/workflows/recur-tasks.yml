@@ -26,4 +26,4 @@ jobs:
         run: pipenv run python recur.py
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_DATABASE_ID: ${{ secrets.DATABASE_ID }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
