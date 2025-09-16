@@ -1,0 +1,29 @@
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  recur-tasks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: python setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: pipenv install
+        run: pip install pipenv
+
+      - name: pipenv setup
+        run: pipenv install
+
+      - name: run
+        run: pipenv run python recur.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.DATABASE_ID }}
